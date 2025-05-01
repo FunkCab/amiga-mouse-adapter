@@ -32,7 +32,7 @@ void setup()
       WiiChk.print_data();
       CENTREX = WiiChk.joyx();
       CENTREY = WiiChk.joyy();
-      // Serial.begin(115200);
+     Serial.begin(115200);
 }
 void loop() 
 {
@@ -119,4 +119,22 @@ if (XV > CENTRE_DBAND || XV < -CENTRE_DBAND || YV > CENTRE_DBAND || YV < -CENTRE
     delay(DLYY);
   }
 }
+  Serial.print("x output   ");
+  Serial.print(XV);
+  Serial.print("Y output   ");
+  Serial.print(YV);
+  Serial.println();
+  Serial.print("x centre   ");
+  Serial.print(CENTREX);
+  Serial.print("y centre   ");
+  Serial.print(CENTREY);
+  Serial.println();
+  Serial.print("x delay  ");
+  Serial.print(DLYX);
+  Serial.print("y delay  ");
+  Serial.print(DLYY);
+  Serial.println();
+
+
+
 }
