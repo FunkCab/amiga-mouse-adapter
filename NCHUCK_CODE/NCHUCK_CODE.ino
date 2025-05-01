@@ -103,17 +103,20 @@ void loop()
     hq[0] = 1; hq[1] = 0; hq[2] = 0; hq[3] = 1;
   }
 // PROBABLY UNSTABLE AT 20MS - 20X8 = 160MS X2 = .3 SECONDS - BUTTONS MAY BE IGNORED
+if (XV > CENTRE_DBAND || XV < -CENTRE_DBAND || YV > CENTRE_DBAND || YV < -CENTRE_DBAND) // FALL INTO HERE ONLY IF PAST DEADBAND VALUE. IF DRIFTING, BUTTONS WON'T WORK
+{
   for(int i = 0; i < 4; i++) 
   {
     digitalWrite(P_OUT_H_PULSE, h[i]);
     digitalWrite(P_OUT_HQ_PULSE, hq[i]);
     delay(DLYX);
   }
-    for(int i = 0; i < 4; i++) 
+
+  for(int i = 0; i < 4; i++) 
   {
     digitalWrite(P_OUT_V_PULSE, v[i]);
     digitalWrite(P_OUT_VQ_PULSE, vq[i]);
     delay(DLYY);
   }
-
+}
 }
