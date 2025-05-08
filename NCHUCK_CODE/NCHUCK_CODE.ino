@@ -87,20 +87,23 @@ void loop()
   if (YV > (130 + CENTRE_DBAND)) 
   {
     //UP
-    DLYX = map(YV, 130, 255, 20, 0);
-    v[0]  = 1; v[1]  = 0; v[2]  = 0; v[3]  = 1;
-    vq[0] = 0; vq[1] = 0; vq[2] = 1; vq[3] = 1;
-    Serial.print("DIRECTION: UP");
+        DLYX = map(YV, 130, 0, 20, 0);
+    v[0]  = 0; v[1]  = 0; v[2]  = 1; v[3]  = 1;
+    vq[0] = 1; vq[1] = 0; vq[2] = 0; vq[3] = 1;
+    Serial.print("DIRECTION: DOWN");
     Serial.print('\t');
     TRIGGER = 1;
+
+
   } 
   else if (YV < (130 - CENTRE_DBAND)) 
   {
     //DOWN
-    DLYX = map(YV, 130, 0, 20, 0);
-    v[0]  = 0; v[1]  = 0; v[2]  = 1; v[3]  = 1;
-    vq[0] = 1; vq[1] = 0; vq[2] = 0; vq[3] = 1;
-    Serial.print("DIRECTION: DOWN");
+
+        DLYX = map(YV, 130, 255, 20, 0);
+    v[0]  = 1; v[1]  = 0; v[2]  = 0; v[3]  = 1;
+    vq[0] = 0; vq[1] = 0; vq[2] = 1; vq[3] = 1;
+    Serial.print("DIRECTION: UP");
     Serial.print('\t');
     TRIGGER = 1;
   }
@@ -112,20 +115,22 @@ void loop()
   if (XV > (130 + CENTRE_DBAND))
   {
     //RIGHT
-    DLYY = map(XV, 130, 255, 20, 1);
-    h[0]  = 1; h[1]  = 0; h[2]  = 0; h[3]  = 1;
-    hq[0] = 0; hq[1] = 0; hq[2] = 1; hq[3] = 1;
-    Serial.print("DIRECTION: RIGHT");
+    DLYY = map(XV, 130, 0, 20, 0);
+    h[0]  = 0; h[1]  = 0; h[2]  = 1; h[3]  = 1;
+    hq[0] = 1; hq[1] = 0; hq[2] = 0; hq[3] = 1;
+    Serial.print("DIRECTION: LEFT");
     Serial.print('\t');
     TRIGGER2 = 1;
   } 
   else if (XV < (130 - CENTRE_DBAND)) 
   {
     //LEFT
-    DLYY = map(XV, 130, 0, 20, 0);
-    h[0]  = 0; h[1]  = 0; h[2]  = 1; h[3]  = 1;
-    hq[0] = 1; hq[1] = 0; hq[2] = 0; hq[3] = 1;
-    Serial.print("DIRECTION: LEFT");
+
+
+    DLYY = map(XV, 130, 255, 20, 0);
+    h[0]  = 1; h[1]  = 0; h[2]  = 0; h[3]  = 1;
+    hq[0] = 0; hq[1] = 0; hq[2] = 1; hq[3] = 1;
+    Serial.print("DIRECTION: RIGHT");
     Serial.print('\t');
     TRIGGER2 = 1;
   }
@@ -141,7 +146,7 @@ if (TRIGGER == 1) // FALL INTO HERE ONLY IF PAST DEADBAND VALUE. IF DRIFTING, BU
   {
     digitalWrite(P_OUT_H_PULSE, h[i]);
     digitalWrite(P_OUT_HQ_PULSE, hq[i]);
-    delay(DLYX);
+    delay(DLYX-5);
   
   
   }
@@ -161,7 +166,7 @@ if (TRIGGER2 == 1)
   {
     digitalWrite(P_OUT_V_PULSE, v[i]);
     digitalWrite(P_OUT_VQ_PULSE, vq[i]);
-    delay(DLYY);
+    delay(DLYY-5);
   }
   TRIGGER2= 0;
   Serial.print('\n');
@@ -192,6 +197,6 @@ else
      Serial.print('\n');
     Serial.print("----------------------------------------------------------------------------------------------");
     Serial.print('\n');
-delay(500);
+//delay(500);
 
 }
